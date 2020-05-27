@@ -24,7 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/lecturer/{code}', 'LecturerController@index');
 
 Route::get('/lecturer/{code}/position', 'LecturerController@positionList');
+
 Route::get('/lecturer/{code}/subject', 'LecturerController@subjectList');
+
 Route::get('/lecturer/{code}/research', 'LecturerController@researchList');
 
 
