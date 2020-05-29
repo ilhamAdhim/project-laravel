@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 use App\AccountLecturer;
 use App\LecturerModel;
 use App\SubjectLecturer;
@@ -71,10 +73,10 @@ class LecturerController extends Controller
     }
     
     public function updatePassword(Request $request){
-        $info = AccountLecturer::find($id);
+        $info = AccountLecturer::where('code',Auth::user()->code)->first();
         
-        $info->password = $request->password;
-
+        $info->password = Hash::make($request->password);
+        $info->save();
         // Restful Server for Laravel If data is updated
         /* if($info->save()){
             $res['message'] = "Successfully updated!";
@@ -84,19 +86,22 @@ class LecturerController extends Controller
             $res['message'] = "Failed!";
             return response($res);
         } */
-        return redirect('/lecturer/{code}');
+        
+        return redirect('/home');
     }
 
     public function deleteAccount(){
         $user = AccountLecturer::where('code',Auth::user()->code);
 
         // Restful Server for Laravel If data is deleted
-        if($user->delete()){
+        /* if($user->delete()){
             $res['message'] = "Successfully deleted!";
             return response($res);
         }else{
             $res['message'] = "Failed!";
             return response($res);
-        }
+        } */
+        $user->delete();
+        return redirect('/login');
     }
 }

@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'LecturerController@index');
+Route::get('/home', 'LecturerController@index')->name('home');
 
 Route::get('/lecturer/{code}/position', 'LecturerController@positionList');
 
@@ -30,3 +30,5 @@ Route::get('/lecturer/{code}/research', 'LecturerController@researchList');
 Route::get('/lecturer/{code}/changePassword', 'LecturerController@editPassword');
 
 Route::post('/lecturer/{code}/updatePassword', 'LecturerController@updatePassword');
+
+Route::get('/lecturer/{code}/deleteAccount', 'LecturerController@deleteAccount');

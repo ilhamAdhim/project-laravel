@@ -83,7 +83,16 @@
             </table>
         </div>
     </div>
-    <a href="/lecturer/{{$code}}/changePassword" class="btn btn-info"> <b> Change Password</b></a>
+
+    <div class="container">
+        <div class="pull-left">
+            <a href="/lecturer/{{$code}}/changePassword" class="btn btn-info"> <b> Change Password</b></a>
+        </div>
+        <div class="pull-right">
+            <a href="/lecturer/{{$code}}/deleteAccount" class="btn btn-danger"> <b> Delete Account</b></a>
+        </div>
+    </div>
+
 </div>
 <!--/row-->
 </div>

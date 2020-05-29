@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="mb-3">
-    <a href="/home" class="btn btn-danger"> Back to Profile </a>
+    <a href="/home" class="btn btn-secondary"> Back to Profile </a>
 </div>
 <br>
 
