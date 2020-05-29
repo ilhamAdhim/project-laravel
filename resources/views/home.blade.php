@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','Home')
 
 @section('content')
 <div class="container">
@@ -15,6 +16,9 @@
                     @endif
 
                     You are logged in!
+
+                    <b>
+                    {{ $account[0]->code }}</b>
                 </div>
             </div>
         </div>

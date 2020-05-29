@@ -109,7 +109,7 @@
                                 @csrf
 
                                     <div class="md-form">
-                                        <input type="text" id="inputMDEx" class="form-control" name="nm" required>
+                                        <input type="text" id="inputMDEx" class="form-control" name="code" required>
                                         <label for="inputMDEx">Codename</label>
                                         <div class="invalid-feedback">Oops, you missed this one.</div>
                                     </div>
@@ -122,12 +122,6 @@
                                     </div>
 
                                     <div class="md-form">
-                                        <input type="text" id="inputMDEx" class="form-control" name="uname1" required>
-                                        <label for="inputMDEx">Username</label>
-                                        <div class="invalid-feedback">Oops, you missed this one.</div>
-                                    </div>
-
-                                    <div class="md-form">
                                         <input type="password" id="inputMDEx" class="form-control" type="password"
                                             name="pwd1" required>
                                         <label for="inputMDEx">Password</label>
@@ -135,8 +129,7 @@
                                     </div>
 
                                     <div class="md-form">
-                                        <input type="password" id="inputMDEx" class="form-control" name="uname1"
-                                            required>
+                                        <input type="password" id="inputMDEx" class="form-control" required>
                                         <label for="inputMDEx">Re-enter Password</label>
                                         <div class="invalid-feedback">Oops, you missed this one.</div>
                                     </div>

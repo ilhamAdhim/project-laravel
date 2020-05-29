@@ -8,5 +8,5 @@ class SubjectLecturer extends Model
 {
     //
     protected $table = 'vu_class_schedule';
-
+    
 }

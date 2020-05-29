@@ -29,4 +29,6 @@ Route::get('/lecturer/{code}/subject', 'LecturerController@subjectList');
 
 Route::get('/lecturer/{code}/research', 'LecturerController@researchList');
 
+Route::get('/lecturer/{code}/changePassword', 'LecturerController@editPassword');
 
+Route::post('/lecturer/{code}/updatePassword', 'LecturerController@updatePassword');

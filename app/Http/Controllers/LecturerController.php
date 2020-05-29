@@ -7,44 +7,36 @@ use App\AccountLecturer;
 use App\LecturerModel;
 use App\SubjectLecturer;
 use App\positionLecturer;
-use App\ResearchLecturer;
+use App\ResearcherLecturer;
 
 class LecturerController extends Controller
 {
     //CRUD + Download + Upload File Contract 
 
     public function index($code){
-
-        /* $data = array(
-            'title'  => 'Lecturer Home',
-            'code' => $code,
-            'position' => $this->lecturer_model->lecPositionYzear($code),
-            'research' => $this->lecturer_model->lecResearchPriority($code),
-            'subject' => $teach_subjects,
-            'info'  => $this->lecturer_model->getPersonalInfo($code),
-            'account' => $this->lecturer_model->getAccount($code),
-            'isDownloadable' => $isDownloadable
-        ); */
         $data = [
             'account'   => AccountLecturer::where('code',$code)->get(),
-            'info'      => LecturerModel::where('code',$code)->get()
+            'info'      => LecturerModel::where('code',$code)->get(),
+            'positions' => positionLecturer::where('code',$code)->get()
         ];
-        return view('home',$data);
+        return view('profile',$data);
     }
 
     public function subjectList($code){
-        $subjects = SubjectLecturer::where('code',$code)->get();
-        return view('subject',['subjects' => $subjects]);
-    }
-
-    public function positionList($code){
-        $positions = positionLecturer::where('code',$code)->get();
-        return view('position',['positions' => $positions]);
+        $data = [
+            'account' =>   AccountLecturer::where('code',$code)->get(),
+            'subjects' => SubjectLecturer::where('code',$code)->get()
+        ];
+        
+        return view('subjects',$data);
     }
 
     public function researchList($code){
-        $research = ResearcherLecturer::where('code',$code)->get();
-        return view('research',['research' => $research]);
+        $data = [
+            'account' =>   AccountLecturer::where('code',$code)->get(),
+            'research' => ResearcherLecturer::where('code',$code)->get(),
+        ];
+        return view('research',$data);
     }
 
 // public function detail($id){
@@ -76,16 +68,17 @@ class LecturerController extends Controller
 // }
 
     public function editPassword($code){
-        $info = AccountLecturer::where('code',$code)->get();
-        return view('changePassword',['info' => $info]);
+        $data = [
+            'account' =>   AccountLecturer::where('code',$code)->get(),
+            'info' => AccountLecturer::where('code',$code)->get(),
+        ];
+        return view('changePassword',$data);
     }
     
-    public function updatePassword(Request $request,$code){
-        $info = AccountLecturer::where('code',$code)->get();
-        $info->password = $request->pwd;
+    public function updatePassword(Request $request , $code){
+        $info = AccountLecturer::find($id);
+        $info->password = $request->password;
         $info->save();
-        return redirect('/Lecturer/{code}');
-        
+        return redirect('/lecturer/{code}');
     }
-
 }
