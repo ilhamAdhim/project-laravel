@@ -56,7 +56,7 @@
                   <ul class="dropdown-menu">
                     @if($isDownloadable[$count])
                     <div class="alert alert-success" role="alert">
-                      <strong>Update the contract file</strong>
+                      <strong>Belum selesai pak, maaf</strong>
                     </div>
                     @else
                     <div class="alert alert-warning" role="alert">
@@ -67,7 +67,7 @@
                     <input name="userfile" type="file" />
                     <hr>
                     <li class="text-center">
-                      <input type="submit" class="btn btn-info" value="Submit"> </li>
+                      <input type="submit" class="btn btn-info" value="Submit" disabled> </li>
                 </form>
                 </ul>
                 <!-- End of upload's dropdown -->
@@ -79,7 +79,7 @@
               <form action="lec_home/downloadContract" method="POST">
                 <input type="hidden" name="subject_code" value="{{$value->subject_code}}">
                 <input type="hidden" name="code" value="{{$code}}">
-                <input class="btn btn-secondary" type="submit" value="Download">
+                <input class="btn btn-secondary" type="submit" disabled value="Download">
               </form>
             </div>
             @endif

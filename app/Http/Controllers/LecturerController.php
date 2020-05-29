@@ -35,7 +35,7 @@ class LecturerController extends Controller
             return response($res);
         } */
         
-        return view('profile',$data);
+        return view('home',$data);
     }
 
     public function subjectList(){
