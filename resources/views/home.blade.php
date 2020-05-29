@@ -17,8 +17,7 @@
 
                     You are logged in!
 
-                    <b>
-                    {{ $account[0]->code }}</b>
+                    <b> hello</b>
                 </div>
             </div>
         </div>

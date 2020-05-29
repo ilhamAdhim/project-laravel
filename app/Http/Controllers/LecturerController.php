@@ -13,23 +13,36 @@ class LecturerController extends Controller
 {
     //CRUD + Download + Upload File Contract 
 
-    public function index($code){
+    public function index(){
         $data = [
-            'code'      => $code,
-            'info'      => LecturerModel::where('code',$code)->get(),
-            'positions' => positionLecturer::where('code',$code)->get()
+            'code'      => Auth::user()->code,
+            'info'      => LecturerModel::where('code',Auth::user()->code)->get(),
+            'positions' => positionLecturer::where('code',Auth::user()->code)->get()
         ];
+
+        // Restful Server for Laravel
+        /* if(count($data) > 0){
+            $res['message'] = "Success!";
+            $res['values'] = $data;
+            return response($res);
+        }
+        // if data is empty
+        else{
+            $res['message'] = "Kosong!";
+            return response($res);
+        } */
+        
         return view('profile',$data);
     }
 
-    public function subjectList($code){
+    public function subjectList(){
 
-        $subject = SubjectLecturer::where('code',$code)->get();
+        $subject = SubjectLecturer::where('code',Auth::user()->code)->get();
 
         $isSubjectDownloadable = SubjectLecturer::checkDownloadable($subject);
 
         $data = [
-            'code' =>   $code,
+            'code' =>   Auth::user()->code,
             'subject' => $subject,
             'isDownloadable' => $isSubjectDownloadable
         ];
@@ -37,55 +50,52 @@ class LecturerController extends Controller
         return view('subjects',$data);
     }
 
-    public function researchList($code){
+    public function researchList(){
         $data = [
-            'code'      => $code,
-            'research' => ResearcherLecturer::where('code',$code)->get(),
+            'code'      => Auth::user()->code,
+            'research' => ResearcherLecturer::where('code',Auth::user()->code)->get(),
             
         ];
         return view('research',$data);
     }
 
-// public function detail($id){
-    //     $mahasiswa = Mahasiswa::find($id);
-    //     return view('detail',['mahasiswa'=>$mahasiswa]);
-    // }
-
-    // public function edit($id){
-    //     $mahasiswa = Mahasiswa::find($id);
-    //     return view('edit',['mahasiswa'=>$mahasiswa]);
-    // }
-
-    // public function update($id, Request $request){
-    //     $mahasiswa = Mahasiswa::find($id);
-    //     $mahasiswa->nama = $request->namamhs;
-    //     $mahasiswa->nim = $request->nimmhs;
-    //     $mahasiswa->email = $request->emailmhs;
-    //     $mahasiswa->jurusan = $request->jurusanmhs;
-        
-    //     $mahasiswa->save();
-
-    //     return redirect('/mahasiswa');
-    // }
-
-    // public function hapus($id){
-    //     $mahasiswa = Mahasiswa::find($id);
-    //     $mahasiswa->delete();
-    //     return redirect('/mahasiswa');
-// }
-
-    public function editPassword($code){
+    public function editPassword(){
         $data = [
-            'code'      => $code,
-            'info' => AccountLecturer::where('code',$code)->get(),
+            'code'      => Auth::user()->code,
+            'info' => AccountLecturer::where('code',Auth::user()->code)->get(),
         ];
+
+        
         return view('changePassword',$data);
     }
     
-    public function updatePassword(Request $request , $code){
+    public function updatePassword(Request $request){
         $info = AccountLecturer::find($id);
+        
         $info->password = $request->password;
-        $info->save();
+
+        // Restful Server for Laravel If data is updated
+        /* if($info->save()){
+            $res['message'] = "Successfully updated!";
+            $res['values'] = $info;
+            return response($res);
+        }else{
+            $res['message'] = "Failed!";
+            return response($res);
+        } */
         return redirect('/lecturer/{code}');
+    }
+
+    public function deleteAccount(){
+        $user = AccountLecturer::where('code',Auth::user()->code);
+
+        // Restful Server for Laravel If data is deleted
+        if($user->delete()){
+            $res['message'] = "Successfully deleted!";
+            return response($res);
+        }else{
+            $res['message'] = "Failed!";
+            return response($res);
+        }
     }
 }

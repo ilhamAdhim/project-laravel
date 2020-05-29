@@ -4,19 +4,27 @@
 
 @section('content')
 
-<div class="row mx-auto">
+<div class="row">
   <!-- SUBJECTS -->
   <!-- If the lecturer teach more than one subject -->
     @if(!empty($subject) && count($subject) != 1)
-    <div class="container">
-    <div class="card-deck">
+    <div class="container ">
+      <div class="row  justify-content-center">
+    {{-- <div class="card-deck"> --}}
       <!-- Count variable will be used to access the array of isDownloadable variable -->
       <?php $count = -1?>
+      <?php $col = -1?>
+
       @foreach ($subject as $key => $value)
-      <?php $count++;?>
-      <div class="card">
+      <?php $count++;$col++;?>
+      @if($col >= 3)
+        
+        <div class="card col-sm-3 mb-4 ml-4 mt-4  mr-4 mb-2 p-4">
+      @else
+        <div class="card col-sm-3 ml-4 mr-4 mb-2 p-4">
+      @endif
         <div class="text-center">
-          <img class="card-img-top" src="{{asset('/images/docs.png')}}" style="height:150px;width:150px;"
+          <img class="card-img-top" src="{{asset('images/docx.png')}}" style="height:150px;width:150px;"
             alt="">
         </div>
         <div class="card-body">
@@ -30,11 +38,11 @@
         </div>
 
         <div class="card-footer">
-          <div class="d-flex flex-row justify-content-center">
+          <div class="justify-content-center">
             <div class="p-2 flex-fill">
               <div class="dropdown mx-auto text-center">
                 <!-- Dropdown upload -->
-                <button class="btn btn-primary dropdown-toggle" style="width:9em" data-toggle="dropdown">
+                <button class="btn btn-primary dropdown-toggle" style="width:12em" data-toggle="dropdown">
                   Upload
                 </button>
                 <form action="lec_home/uploadContract" method="POST">
@@ -60,7 +68,7 @@
               </div>
               <!-- End of upload flex's section -->
             </div>
-            @if($isDownloadable[$count]){
+            @if($isDownloadable[$count])
             <div class="p-2 text-center flex-fill">
               <form action="lec_home/downloadContract" method="POST">
                 <input type="hidden" name="subject_code" value="{{$value->subject_code}}">
@@ -78,6 +86,7 @@
       @endforeach
       <!-- Reset -->
       <?php $count = -1?>
+      <?php $col = -1?>
       <!-- If the lecturer teach only one subject -->
     @elseif(!empty($subject) && count($subject) == 1)
       <div class="col-sm-4">
@@ -139,7 +148,7 @@
         </div>
       </div>
 
-      @else{
+      @else
       <div class="mx-auto">
         <strong> You are not teaching anything </strong>
         {{count($subject)}}

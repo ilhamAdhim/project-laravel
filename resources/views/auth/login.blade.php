@@ -35,6 +35,65 @@
 </style>
 
 <body>
+{{-- 
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Login') }}</div>
+    
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+    
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+    
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Login') }}
+                                    </button>
+    
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
 
 <div class="container">
         <div class="row">
@@ -45,29 +104,32 @@
                         <!-- form card login -->
                         <div class="card rounded shadow shadow-sm">
                             <div class="card-header">
-                                <h3 class="mb-0">Login</h3>
+                                <h3 class="mb-0">{{ __('Login') }}</h3>
                             </div>
                             <div class="card-body">
                                 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-                                    <div class="md-form">
-                                        <input type="text" id="inputMDEx" class="form-control" name="code"
-                                            id="code" required>
-                                        <label for="inputMDEx">Codename</label>
-                                        <div class="invalid-feedback">Oops, you missed this one.</div>
-                                    </div>
+                                <div class="md-form">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    {{-- <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="code" autofocus> --}}
+                                    
+                                    <label for="email">{{ __('E-Mail Address') }}</label>
+                                    
+                                    <div class="invalid-feedback">Oops, you missed this one.</div>
+                                </div>
+                                <div class="md-form">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <label for="password">{{ __('Password') }}</label>
+                                    <div class="invalid-feedback">Oops, you missed this one.</div>
+                                </div>
 
-                                    <div class="md-form">
-                                        <input type="password" id="inputMDEx2" class="form-control"  name="password" id="password" required="">
-                                        <label for="inputMDEx2">{{ __('Password') }}</label>
-                                        <div class="invalid-feedback">Oops, you missed this one.</div>
-                                    </div>
 
                                     <span class="custom-control-description small text-dark">Don't have an
                                         account ? </span>
                                         
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    
                                     <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">
                                         <span>
                                         <i class="fa fa-lock mr-2" aria-hidden="true"></i>
@@ -81,15 +143,15 @@
 
                             <!--/card-block-->
                         </div>
-                        <?php if (isset($pesan)) { ?>
+                        @if(isset($pesan))
                         <div class="alert alert-danger" role="alert">
                             <?=$pesan?>
                         </div>
-                        <?php }else{ ?>
+                        @else
                         <div class="alert alert-info">
                             <?="Input your username and password"?>
                         </div>
-                        <?php } ?>
+                        @endif
                         <!-- /form card login -->
 
                     </div>

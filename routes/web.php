@@ -19,16 +19,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home'); 
 
-Route::get('/lecturer/{code}', 'LecturerController@index');
+Route::get('/lecturer', 'LecturerController@index');
 
-Route::get('/lecturer/{code}/position', 'LecturerController@positionList');
+Route::get('/lecturer/position', 'LecturerController@positionList');
 
-Route::get('/lecturer/{code}/subject', 'LecturerController@subjectList');
+Route::get('/lecturer/subject', 'LecturerController@subjectList');
 
-Route::get('/lecturer/{code}/research', 'LecturerController@researchList');
+Route::get('/lecturer/research', 'LecturerController@researchList');
 
-Route::get('/lecturer/{code}/changePassword', 'LecturerController@editPassword');
+Route::get('/lecturer/changePassword', 'LecturerController@editPassword');
 
-Route::post('/lecturer/{code}/updatePassword', 'LecturerController@updatePassword');
+Route::post('/lecturer/updatePassword', 'LecturerController@updatePassword');

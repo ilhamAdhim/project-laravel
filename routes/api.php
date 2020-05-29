@@ -17,3 +17,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/lecturer/{code}', 'LecturerController@index');
+
+Route::get('/lecturer/{code}/position', 'LecturerController@positionList');
+
+Route::get('/lecturer/{code}/subject', 'LecturerController@subjectList');
+
+Route::get('/lecturer/{code}/research', 'LecturerController@researchList');
+
+Route::get('/lecturer/{code}/changePassword', 'LecturerController@editPassword');
+
+Route::post('/lecturer/{code}/updatePassword', 'LecturerController@updatePassword');
