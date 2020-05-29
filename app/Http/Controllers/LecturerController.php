@@ -15,7 +15,7 @@ class LecturerController extends Controller
 
     public function index($code){
         $data = [
-            'account'   => AccountLecturer::where('code',$code)->get(),
+            'code'      => $code,
             'info'      => LecturerModel::where('code',$code)->get(),
             'positions' => positionLecturer::where('code',$code)->get()
         ];
@@ -23,9 +23,15 @@ class LecturerController extends Controller
     }
 
     public function subjectList($code){
+
+        $subject = SubjectLecturer::where('code',$code)->get();
+
+        $isSubjectDownloadable = SubjectLecturer::checkDownloadable($subject);
+
         $data = [
-            'account' =>   AccountLecturer::where('code',$code)->get(),
-            'subjects' => SubjectLecturer::where('code',$code)->get()
+            'code' =>   $code,
+            'subject' => $subject,
+            'isDownloadable' => $isSubjectDownloadable
         ];
         
         return view('subjects',$data);
@@ -33,8 +39,9 @@ class LecturerController extends Controller
 
     public function researchList($code){
         $data = [
-            'account' =>   AccountLecturer::where('code',$code)->get(),
+            'code'      => $code,
             'research' => ResearcherLecturer::where('code',$code)->get(),
+            
         ];
         return view('research',$data);
     }
@@ -69,7 +76,7 @@ class LecturerController extends Controller
 
     public function editPassword($code){
         $data = [
-            'account' =>   AccountLecturer::where('code',$code)->get(),
+            'code'      => $code,
             'info' => AccountLecturer::where('code',$code)->get(),
         ];
         return view('changePassword',$data);

@@ -16,16 +16,16 @@
       <?php $count++;?>
       <div class="card">
         <div class="text-center">
-          <img class="card-img-top" src="<?=base_url()?>assets/images/docx.png" style="height:150px;width:150px;"
+          <img class="card-img-top" src="{{asset('/images/docs.png')}}" style="height:150px;width:150px;"
             alt="">
         </div>
         <div class="card-body">
           <hr>
           <h5 class="card-text pull-left" style="font-size:1.2em">
-            <center><?=$value->subject ?></center>
+            <center>{{$value->subject}}</center>
           </h5>
           <br>
-          <p class="card-text pull-right"> <?=$value->class?> </p>
+          <p class="card-text pull-right"> {{$value->class}} </p>
           <!-- End of body card -->
         </div>
 
@@ -38,21 +38,18 @@
                   Upload
                 </button>
                 <form action="lec_home/uploadContract" method="POST">
-                  <input type="hidden" name="subject_code" value="<?=$value->subject_code?>">
+                  <input type="hidden" name="subject_code" value="{{$value->subject_code}}">
                   <ul class="dropdown-menu">
-                    <?php if($isDownloadable[$count]){ ?>
+                    @if($isDownloadable[$count])
                     <div class="alert alert-success" role="alert">
                       <strong>Update the contract file</strong>
                     </div>
-                    <?php } else{ ?>
+                    @else
                     <div class="alert alert-warning" role="alert">
                       <strong>Be the first to upload</strong>
                     </div>
-                    <?php } 
-                            
-                              $userfile = 'userfile'.$count;
-                            ?>
-                    <input type="hidden" name="identifier" value="<?=$userfile?>">
+                    @endif
+                    
                     <input name="userfile" type="file" />
                     <hr>
                     <li class="text-center">
@@ -63,15 +60,15 @@
               </div>
               <!-- End of upload flex's section -->
             </div>
-            <?php if($isDownloadable[$count]){ ?>
+            @if($isDownloadable[$count]){
             <div class="p-2 text-center flex-fill">
               <form action="lec_home/downloadContract" method="POST">
-                <input type="hidden" name="subject_code" value="<?=$value->subject_code?>">
-                <input type="hidden" name="code" value="<?=$this->session->userdata('code')?>">
+                <input type="hidden" name="subject_code" value="{{$value->subject_code}}">
+                <input type="hidden" name="code" value="{{$code}}">
                 <input class="btn btn-secondary" type="submit" value="Download">
               </form>
             </div>
-            <?php } ?>
+            @endif
             <!-- End of footer's buttons -->
           </div>
           <!-- End of card deck -->
@@ -132,7 +129,7 @@
               <div class="p-2 text-center flex-fill">
                 <form action="lec_home/downloadContract" method="POST">
                   <input type="hidden" name="subject_code" value="{{$subject[0]->subject_code}}">
-                  <input type="hidden" name="code" value="<?=$this->session->userdata('code')?>">
+                  <input type="hidden" name="code" value="{{$code}}">
                   <input class="btn btn-secondary" type="submit" value="Download">
                 </form>
                 @endif
@@ -145,6 +142,7 @@
       @else{
       <div class="mx-auto">
         <strong> You are not teaching anything </strong>
+        {{count($subject)}}
       </div>
       @endif
 

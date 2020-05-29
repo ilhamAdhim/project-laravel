@@ -4,15 +4,15 @@
 
 @section('content')
 <div class="mb-3">
-    <a href="/lecturer/{{$account[0]->code}}" class="btn btn-danger"> Back to Profile </a>
+    <a href="/lecturer/{{$code}}" class="btn btn-danger"> Back to Profile </a>
 </div>
 
 <div class="container">
-    <form role="form" method="post" action="/lecturer/{{$account[0]->code}}/updatePassword">
+    <form role="form" method="post" action="/lecturer/{{$code}}/updatePassword">
         <div class="form-group row">
             <label class="col-lg-3 col-form-label form-control-label"> <b> Password </b></label>
             <div class="col-lg-9">
-              <input class="form-control" type="text" name="code" value= {{$account[0]->code}} disabled>
+              <input class="form-control" type="text" name="code" value= {{$code}} disabled>
             </div>
           </div>
       <div class="form-group row">

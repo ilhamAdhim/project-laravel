@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="{{asset('css/stylenavbar.css')}}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
 
     <!-- Material Design Bootstrap -->
@@ -20,6 +22,38 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
+<style>
+    body,
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+</style>
 <body>
 
     <style>
@@ -30,7 +64,7 @@
     </style>
 
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color:#244282;">
-        <a class="navbar-brand" href="/lecturer/{{$account[0]->code}}">
+        <a class="navbar-brand" href="/lecturer/{{$code}}">
             <img src="{{ asset('/images/logo JTI.png') }}" height=100px alt="">
         </a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
@@ -39,11 +73,11 @@
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/lecturer/{{$account[0]->code}}/subject"> Subjects List </a>
+                    <a class="nav-link" href="/lecturer/{{$code}}/subject"> Subjects List </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/lecturer/{{$account[0]->code}}/research"> Research Group </a>
+                    <a class="nav-link" href="/lecturer/{{$code}}/research"> Research Group </a>
                 </li>
             </ul>
         </div>

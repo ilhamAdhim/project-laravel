@@ -83,7 +83,7 @@
             </table>
         </div>
     </div>
-    <a href="/lecturer/{{$account[0]->code}}/changePassword" class="btn btn-info"> <b> Change Password</b></a>
+    <a href="/lecturer/{{$code}}/changePassword" class="btn btn-info"> <b> Change Password</b></a>
 </div>
 <!--/row-->
 </div>
