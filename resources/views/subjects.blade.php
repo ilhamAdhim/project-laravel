@@ -4,6 +4,12 @@
 
 @section('content')
 
+
+<div class="mb-3">
+  <a href="/home" class="btn btn-danger"> Back to Profile </a>
+</div>
+<br>
+
 <div class="row">
   <!-- SUBJECTS -->
   <!-- If the lecturer teach more than one subject -->
